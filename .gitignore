@@ -1,0 +1,14 @@
+target/
+.env
+*.iml
+.idea/
+.vscode/
+.DS_Store
+
+# Terraform
+infra/terraform/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+crash.log

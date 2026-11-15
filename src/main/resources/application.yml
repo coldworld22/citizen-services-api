@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: citizen-services-api
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/eservices}
+    username: ${DB_USERNAME:eservices}
+    password: ${DB_PASSWORD:eservices}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    # db/demo seeds four demo accounts. Set FLYWAY_LOCATIONS=classpath:db/migration to leave them out.
+    locations: ${FLYWAY_LOCATIONS:classpath:db/migration,classpath:db/demo}
+  mvc:
+    problemdetails:
+      enabled: true
+
+server:
+  forward-headers-strategy: framework
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+app:
+  jwt:
+    # Base64-encoded key of at least 32 bytes. Required: there is deliberately no default.
+    secret: ${JWT_SECRET}
+    ttl: 30m
+  otp:
+    ttl: 5m
+    max-attempts: 5
+    max-requests-per-window: 5
+    window: 15m
+    # Demo only: include the code in the API response. Never enable with real users.
+    expose-code: ${OTP_EXPOSE_CODE:false}
