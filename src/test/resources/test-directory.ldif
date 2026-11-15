@@ -1,0 +1,40 @@
+dn: dc=eservices,dc=local
+objectClass: top
+objectClass: domain
+dc: eservices
+
+dn: ou=staff,dc=eservices,dc=local
+objectClass: top
+objectClass: organizationalUnit
+ou: staff
+
+dn: uid=employee1,ou=staff,dc=eservices,dc=local
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: employee1
+cn: Demo Employee
+sn: Employee
+userPassword: Employee#2026
+
+dn: uid=supervisor1,ou=staff,dc=eservices,dc=local
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: supervisor1
+cn: Demo Supervisor
+sn: Supervisor
+userPassword: Supervisor#2026
+
+# In the directory but with no account in the application: must not be able to sign in.
+dn: uid=contractor1,ou=staff,dc=eservices,dc=local
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: contractor1
+cn: Outside Contractor
+sn: Contractor
+userPassword: Contractor#2026

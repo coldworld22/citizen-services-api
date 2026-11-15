@@ -4,3 +4,16 @@ app:
   otp:
     expose-code: true
     max-requests-per-window: 1000
+  directory:
+    user-base: ou=staff
+    username-attribute: uid
+
+spring:
+  ldap:
+    base: dc=eservices,dc=local
+    embedded:
+      base-dn: dc=eservices,dc=local
+      ldif: classpath:test-directory.ldif
+      port: 0
+      validation:
+        enabled: false

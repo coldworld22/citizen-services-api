@@ -15,6 +15,13 @@ spring:
   mvc:
     problemdetails:
       enabled: true
+  ldap:
+    # Staff directory. For Active Directory, e.g. ldaps://dc01.example.gov.sa:636 with a read-only
+    # service account in LDAP_BIND_DN / LDAP_BIND_PASSWORD to look users up before checking passwords.
+    urls: ${LDAP_URL:ldap://localhost:389}
+    base: ${LDAP_BASE:dc=example,dc=local}
+    username: ${LDAP_BIND_DN:}
+    password: ${LDAP_BIND_PASSWORD:}
 
 server:
   forward-headers-strategy: framework
@@ -34,6 +41,10 @@ springdoc:
     path: /swagger-ui.html
 
 app:
+  directory:
+    user-base: ${LDAP_USER_BASE:ou=staff}
+    # sAMAccountName for Active Directory; uid for OpenLDAP and the test directory.
+    username-attribute: ${LDAP_USERNAME_ATTRIBUTE:sAMAccountName}
   jwt:
     # Base64-encoded key of at least 32 bytes. Required: there is deliberately no default.
     secret: ${JWT_SECRET}

@@ -25,6 +25,10 @@ public class User {
     @Column(length = 20)
     private String phone;
 
+    /** Login name in the staff directory (Active Directory). Null for citizens. */
+    @Column(name = "directory_username", unique = true, length = 64)
+    private String directoryUsername;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private Role role;
@@ -51,6 +55,10 @@ public class User {
 
     public String getPhone() {
         return phone;
+    }
+
+    public String getDirectoryUsername() {
+        return directoryUsername;
     }
 
     public Role getRole() {
