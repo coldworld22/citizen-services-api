@@ -7,7 +7,7 @@
 ![Terraform](https://img.shields.io/badge/Terraform-AWS-7B42BC?logo=terraform&logoColor=white)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A backend for government e-services, modelled on the citizen portals I built for a Saudi regional government. Citizens sign in with a one-time code, staff sign in with their Active Directory account, submit requests (building permits, business licences, certificates, complaints), and follow them while employees review them and supervisors decide. Every sign-in and every decision lands in an audit trail.
+A backend for government e-services, modelled on the citizen portals I built for a Saudi regional government. Citizens sign in with a one-time code, submit requests (building permits, business licences, certificates, complaints) and follow them, while staff sign in with their Active Directory accounts to review and decide them. Every sign-in and every decision lands in an audit trail.
 
 The point of the project is the parts that matter in public-sector systems: identity, access control, a strict workflow, traceability, and infrastructure that can be rebuilt from code.
 

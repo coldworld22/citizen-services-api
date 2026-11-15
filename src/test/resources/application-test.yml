@@ -10,10 +10,11 @@ app:
 
 spring:
   ldap:
+    urls: ldap://localhost:33389
     base: dc=eservices,dc=local
     embedded:
       base-dn: dc=eservices,dc=local
       ldif: classpath:test-directory.ldif
-      port: 0
+      port: 33389
       validation:
         enabled: false

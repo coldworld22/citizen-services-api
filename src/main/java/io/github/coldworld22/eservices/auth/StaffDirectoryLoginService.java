@@ -69,7 +69,7 @@ public class StaffDirectoryLoginService {
         try {
             return ldap.authenticate(directory.userBase(), filter, password);
         } catch (RuntimeException e) {
-            log.warn("Directory unavailable during staff sign-in: {}", e.getMessage());
+            log.warn("Directory unavailable during staff sign-in", e);
             throw new ApiException(HttpStatus.SERVICE_UNAVAILABLE,
                     "The staff directory is not reachable. Please try again later.");
         }
