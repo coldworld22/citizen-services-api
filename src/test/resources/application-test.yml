@@ -1,0 +1,6 @@
+app:
+  jwt:
+    secret: b7IOXMjQy1SGfkE0ZwFEz5KyiT3WvYL/1socmcsGOA4=
+  otp:
+    expose-code: true
+    max-requests-per-window: 1000
