@@ -100,9 +100,9 @@ resource "aws_ecs_task_definition" "api" {
   }
 
   container_definitions = jsonencode([{
-    name      = "api"
-    image     = "${aws_ecr_repository.api.repository_url}:${var.image_tag}"
-    essential = true
+    name         = "api"
+    image        = "${aws_ecr_repository.api.repository_url}:${var.image_tag}"
+    essential    = true
     portMappings = [{ containerPort = 8080, protocol = "tcp" }]
     environment = [
       { name = "DB_URL", value = "jdbc:postgresql://${aws_db_instance.main.endpoint}/${aws_db_instance.main.db_name}" },
