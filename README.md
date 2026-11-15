@@ -1,6 +1,7 @@
 # Citizen Services API
 
 [![CI](https://github.com/coldworld22/citizen-services-api/actions/workflows/ci.yml/badge.svg)](https://github.com/coldworld22/citizen-services-api/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/coldworld22/citizen-services-api/actions/workflows/codeql.yml/badge.svg)](https://github.com/coldworld22/citizen-services-api/actions/workflows/codeql.yml)
 ![Java 21](https://img.shields.io/badge/Java-21-007396?logo=openjdk&logoColor=white)
 ![Spring Boot 3](https://img.shields.io/badge/Spring%20Boot-3.3-6DB33F?logo=springboot&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)
@@ -20,7 +21,10 @@ The point of the project is the parts that matter in public-sector systems: iden
 - **Data isolation:** citizens only ever see their own requests. Asking for someone else's returns `404`, so request IDs can't be probed.
 - **Audit trail:** who did what, to which record, when and from which IP. It's written in the same transaction as the change, so a rolled-back change never leaves an audit entry.
 - **Optimistic locking**, so two supervisors can't silently overwrite each other's decision.
+- **Hardened HTTP:** strict Content-Security-Policy, no-referrer and frame denial on every response, plus a per-IP rate limit on sign-in.
 - **RFC 7807 error responses**, OpenAPI docs and Swagger UI, and health probes for the load balancer.
+
+Security choices are mapped against the OWASP Top 10 in [docs/SECURITY.md](docs/SECURITY.md), and the query indexes are measured on 300,000 requests in [docs/PERFORMANCE.md](docs/PERFORMANCE.md).
 
 ## Architecture
 
