@@ -1,0 +1,40 @@
+name: Query plans
+
+# Re-measures the indexed queries whenever the schema or the benchmark changes.
+on:
+  push:
+    paths:
+      - "src/main/resources/db/migration/**"
+      - "scripts/query-plans/**"
+      - ".github/workflows/query-plans.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  explain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: bench
+          POSTGRES_PASSWORD: bench
+          POSTGRES_DB: bench
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U bench" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      PGHOST: localhost
+      PGUSER: bench
+      PGPASSWORD: bench
+      PGDATABASE: bench
+    steps:
+      - uses: actions/checkout@v4
+      - run: scripts/query-plans/run.sh | tee query-plans.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: query-plans
+          path: query-plans.txt

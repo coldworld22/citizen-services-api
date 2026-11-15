@@ -1,4 +1,6 @@
 app:
+  rate-limit:
+    auth-requests-per-minute: 100000
   jwt:
     secret: b7IOXMjQy1SGfkE0ZwFEz5KyiT3WvYL/1socmcsGOA4=
   otp:

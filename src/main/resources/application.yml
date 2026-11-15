@@ -41,6 +41,8 @@ springdoc:
     path: /swagger-ui.html
 
 app:
+  rate-limit:
+    auth-requests-per-minute: ${AUTH_RATE_LIMIT_PER_MINUTE:30}
   directory:
     user-base: ${LDAP_USER_BASE:ou=staff}
     # sAMAccountName for Active Directory; uid for OpenLDAP and the test directory.

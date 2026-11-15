@@ -4,7 +4,7 @@ import java.time.Duration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "app")
-public record AppProperties(Jwt jwt, Otp otp, Directory directory) {
+public record AppProperties(Jwt jwt, Otp otp, Directory directory, RateLimit rateLimit) {
 
     /**
      * @param secret base64-encoded HMAC key, at least 32 bytes
@@ -29,4 +29,7 @@ public record AppProperties(Jwt jwt, Otp otp, Directory directory) {
      * @param usernameAttribute sAMAccountName for Active Directory, uid for most other LDAP servers
      */
     public record Directory(String userBase, String usernameAttribute) {}
+
+    /** @param authRequestsPerMinute sign-in requests allowed per client IP per minute */
+    public record RateLimit(int authRequestsPerMinute) {}
 }
