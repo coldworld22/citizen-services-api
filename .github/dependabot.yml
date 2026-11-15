@@ -7,6 +7,10 @@ updates:
     groups:
       spring:
         patterns: ["org.springframework*"]
+    # Major upgrades (e.g. Spring Boot 4) are planned work, not automatic bumps.
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: /
     schedule:
